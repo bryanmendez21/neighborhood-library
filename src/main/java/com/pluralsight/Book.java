@@ -10,18 +10,12 @@ public class Book {
     boolean isCheckedOut;
 
 
-    // Constructors
-    public Book(int id) {
+    // Constructor
+    public Book(int id, String isbn, String title, String checkedOutTo,boolean isCheckedOut) {
         this.id = id;
-    }
-
-    public Book(String isbn, String title, String checkedOutTo) {
         this.isbn = isbn;
         this.title = title;
         this.checkedOutTo = checkedOutTo;
-    }
-
-    public Book(boolean isCheckedOut) {
         this.isCheckedOut = isCheckedOut;
     }
 
