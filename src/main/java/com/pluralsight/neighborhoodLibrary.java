@@ -27,6 +27,8 @@ public class neighborhoodLibrary {
         Book book19 = new Book(19, "978-0-7432-7365-7", "War and Peace", null, false);
         Book book20 = new Book(20, "978-0-14-028333-4", "The Count of Monte Cristo", "Jack Taylor", true);
 
+        Book[] allBook = {book1,book2,book3,book4,book5,book6,book7,book8,book9,book10,book11,book12,book13,book14,book15,book16,book17,book18,book19,book20};
+        int lengthOfBook = allBook.length;
 
         System.out.println("(1) Show Available Books");
         System.out.println("(2) Show Checked Out Books");
@@ -36,10 +38,20 @@ public class neighborhoodLibrary {
 
         switch (option) {
             case 1 -> {
-                System.out.println("Available Books");
+                System.out.println("Available books");
+                for(int i = 0; i < lengthOfBook; i++ ){
+                    if(!allBook[i].isCheckedOut()){
+                        System.out.println("ID:" + allBook[i].getId()+ "\tIsdn: " + allBook[i].getIsbn()  + "\tTitle: " + allBook[i].getTitle() );
+                    }
+                }
             }
             case 2 -> {
                 System.out.println("Checked Out Books");
+                for(int i = 0; i < lengthOfBook; i++ ){
+                    if(allBook[i].isCheckedOut()) {
+                        System.out.println("ID:" + allBook[i].getId() + "\tIsdn: " + allBook[i].getIsbn() + "\tTitle: " + allBook[i].getTitle() + "\tChecked Out To: " + allBook[i].getCheckedOutTo());
+                    }
+                }
             }
             case 3 -> {
                 System.out.println("Close Application");
