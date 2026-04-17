@@ -35,8 +35,10 @@ public class NeighborhoodLibrary {
         System.out.println("(0) Close Application");
         System.out.print("Pick an option: ");
         int option = userInput.nextInt();
+        userInput.nextLine();
 
         switch (option) {
+
             case 1 -> {
                 System.out.println("Available books");
                 for(int i = 0; i < lengthOfBook; i++ ){
@@ -44,8 +46,27 @@ public class NeighborhoodLibrary {
                         System.out.println("ID:" + allBook[i].getId()+ "\tISBN: " + allBook[i].getIsbn()  + "\tTitle: " + allBook[i].getTitle() );
                     }
                 }
-                System.out.println("");
+                System.out.print("If you would like to check out please provide name: ");
+                String checkOutName = userInput.nextLine();
+                System.out.print("Provide ID number of book being checked out or input 0 to exit: ");
+                int checkOutId = userInput.nextInt();
+                userInput.nextLine();
+                if (checkOutId == 0){
+                    break;
+                }else {
+                    for (int i = 0; i < lengthOfBook; i++) { //itterates through books
+                        if (allBook[i].getId() == checkOutId) { //if user id input mactches id do bottom code
+                            allBook[i].setCheckedOut(true);
+                            allBook[i].setCheckedOutTo(checkOutName);
+                            System.out.println("Book has been successfully checked out");
+                        }
+                    }
+                }
+
+
             }
+
+
             case 2 -> {
                 System.out.println("Checked Out Books");
                 for(int i = 0; i < lengthOfBook; i++ ){
@@ -70,10 +91,14 @@ public class NeighborhoodLibrary {
 
 
             }
+
+
             case 0 -> {
                 System.out.println("Close Application");
                 break;
             }
+
+
         }
     }
 }
