@@ -32,7 +32,7 @@ public class NeighborhoodLibrary {
 
         System.out.println("(1) Show Available Books");
         System.out.println("(2) Show Checked Out Books");
-        System.out.println("(3) Close Application");
+        System.out.println("(0) Close Application");
         System.out.print("Pick an option: ");
         int option = userInput.nextInt();
 
@@ -41,26 +41,38 @@ public class NeighborhoodLibrary {
                 System.out.println("Available books");
                 for(int i = 0; i < lengthOfBook; i++ ){
                     if(!allBook[i].isCheckedOut()){
-                        System.out.println("ID:" + allBook[i].getId()+ "\tIsdn: " + allBook[i].getIsbn()  + "\tTitle: " + allBook[i].getTitle() );
+                        System.out.println("ID:" + allBook[i].getId()+ "\tISBN: " + allBook[i].getIsbn()  + "\tTitle: " + allBook[i].getTitle() );
                     }
                 }
+                System.out.println("");
             }
             case 2 -> {
                 System.out.println("Checked Out Books");
                 for(int i = 0; i < lengthOfBook; i++ ){
                     if(allBook[i].isCheckedOut()) {
-                        System.out.println("ID:" + allBook[i].getId() + "\tIsdn: " + allBook[i].getIsbn() + "\tTitle: " + allBook[i].getTitle() + "\tChecked Out To: " + allBook[i].getCheckedOutTo());
+                        System.out.println("ID:" + allBook[i].getId() + "\tISBN: " + allBook[i].getIsbn() + "\t\tChecked Out To: " + allBook[i].getCheckedOutTo() + "\t\tTitle: " + allBook[i].getTitle() );
                     }
                 }
+                System.out.print("To check in book input ID number Or input 0 to exit: ");
+                int idCheckIn = userInput.nextInt();
+                userInput.nextLine();
+                if (idCheckIn == 0){
+                    break;
+                }else {
+                    for (int i = 0; i < lengthOfBook; i++) {
+                        if (allBook[i].getId() == idCheckIn) {
+                            allBook[i].setCheckedOut(false);
+                            allBook[i].setCheckedOutTo(null);
+                            System.out.println("Book has been successfully checked in");
+                        }
+                    }
+                }
+
+
             }
-            case 3 -> {
+            case 0 -> {
                 System.out.println("Close Application");
                 break;
-            }
-            default -> {
-                System.out.println("pick from 1-3");
-
-
             }
         }
     }
